@@ -3,13 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Research | Supplemental Essay Guide</title>
+    <title>Essay Strategies | Supplemental Essay Guide</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
     <style>
         * { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
         body { color: #37352F; }
@@ -17,358 +13,114 @@
     </style>
 </head>
 <body class="bg-white">
-    <div id="root"></div>
-
-    <script type="text/babel">
-        const { useState } = React;
-
-        const Sidebar = ({ activeSection, essaysExpanded, setEssaysExpanded }) => {
-            const navItems = [
-                { id: 'research', label: 'Research', href: 'index.html' },
-                { 
-                    id: 'strategies', 
-                    label: 'Essay Strategies', 
-                    href: 'strategies.html',
-                    children: [
-                        { id: 'why-school', label: 'Why This School', href: 'why-school.html' },
-                        { id: 'community', label: 'Community', href: 'community.html' },
-                        { id: 'activity', label: 'Activity', href: 'activity.html' },
-                        { id: 'leadership', label: 'Leadership', href: 'leadership.html' },
-                        { id: 'intellectual', label: 'Intellectual', href: 'intellectual.html' },
-                    ]
-                },
-                { id: 'workshop', label: 'Workshop', href: 'workshop.html' },
-            ];
-
-            return (
-                <div className="sidebar fixed left-0 top-0 h-screen flex flex-col">
-                    <div className="px-6 py-4 border-b border-[#E9E9E7]">
-                        <div className="text-sm font-semibold text-[#37352F] mb-1">Gulliver Prep</div>
-                        <div className="text-xs text-[#787774]">Supplemental Essays</div>
+    
+    <div class="flex min-h-screen">
+        <div class="sidebar fixed left-0 top-0 h-screen flex flex-col">
+            <div class="px-6 py-4 border-b border-[#E9E9E7]">
+                <div class="text-sm font-semibold text-[#37352F] mb-1">Gulliver Prep</div>
+                <div class="text-xs text-[#787774]">Supplemental Essays</div>
+            </div>
+            <nav class="flex-1 px-3 py-4 overflow-y-auto">
+                <div class="space-y-1">
+                    <a href="index.html" class="block px-3 py-1.5 rounded text-sm text-[#787774] hover:bg-[#F7F6F5]">Research</a>
+                    <a href="strategies.html" class="block px-3 py-1.5 rounded text-sm bg-[#F7F6F5] text-[#37352F] font-medium">Essay Strategies</a>
+                    <div class="ml-3 mt-1 space-y-1 border-l border-[#E9E9E7] pl-3">
+                        <a href="why-school.html" class="block px-2 py-1 rounded text-xs text-[#9B9A97] hover:text-[#37352F] hover:bg-[#F7F6F5]">Why This School</a>
+                        <a href="community.html" class="block px-2 py-1 rounded text-xs text-[#9B9A97] hover:text-[#37352F] hover:bg-[#F7F6F5]">Community</a>
+                        <a href="activity.html" class="block px-2 py-1 rounded text-xs text-[#9B9A97] hover:text-[#37352F] hover:bg-[#F7F6F5]">Activity</a>
+                        <a href="leadership.html" class="block px-2 py-1 rounded text-xs text-[#9B9A97] hover:text-[#37352F] hover:bg-[#F7F6F5]">Leadership</a>
+                        <a href="intellectual.html" class="block px-2 py-1 rounded text-xs text-[#9B9A97] hover:text-[#37352F] hover:bg-[#F7F6F5]">Intellectual</a>
                     </div>
+                    <a href="workshop.html" class="block px-3 py-1.5 rounded text-sm text-[#787774] hover:bg-[#F7F6F5]">Workshop</a>
+                </div>
+            </nav>
+            <div class="px-6 py-4 border-t border-[#E9E9E7] text-xs">
+                <div class="font-medium text-[#37352F] mb-0.5">David Tran</div>
+                <div class="text-[#9B9A97] mb-2">Writing Coach<br/>Gulliver Prep</div>
+                <a href="mailto:dtran@gulliverprep.org" class="text-[#2383E2] hover:underline">dtran@gulliverprep.org</a>
+            </div>
+        </div>
 
-                    <nav className="flex-1 px-3 py-4 overflow-y-auto">
-                        <div className="space-y-1">
-                            {navItems.map((item) => (
-                                <div key={item.id}>
-                                    <a 
-                                        href={item.href}
-                                        className={`block px-3 py-1.5 rounded text-sm ${
-                                            activeSection === item.id 
-                                                ? 'bg-[#F7F6F5] text-[#37352F] font-medium' 
-                                                : 'text-[#787774] hover:bg-[#F7F6F5]'
-                                        }`}
-                                    >
-                                        {item.label}
-                                    </a>
-                                    
-                                    {item.children && essaysExpanded && (
-                                        <div className="ml-3 mt-1 space-y-1 border-l border-[#E9E9E7] pl-3">
-                                            {item.children.map((child) => (
-                                                <a 
-                                                    key={child.id}
-                                                    href={child.href}
-                                                    className="block px-2 py-1 rounded text-xs text-[#9B9A97] hover:text-[#37352F] hover:bg-[#F7F6F5]"
-                                                >
-                                                    {child.label}
-                                                </a>
-                                            ))}
-                                        </div>
-                                    )}
-                                </div>
-                            ))}
-                        </div>
-
-                        <button 
-                            onClick={() => setEssaysExpanded(!essaysExpanded)}
-                            className="w-full mt-4 px-3 py-1.5 text-xs text-[#9B9A97] hover:text-[#37352F] text-left"
-                        >
-                            {essaysExpanded ? '← Collapse' : '→ Expand essays'}
-                        </button>
-                    </nav>
-
-                    <div className="px-6 py-4 border-t border-[#E9E9E7] text-xs">
-                        <div className="font-medium text-[#37352F] mb-0.5">David Tran</div>
-                        <div className="text-[#9B9A97] mb-2">Writing Coach<br/>Gulliver Prep</div>
-                        <a href="mailto:dtran@gulliverprep.org" className="text-[#2383E2] hover:underline">
-                            dtran@gulliverprep.org
-                        </a>
+        <main class="flex-1 ml-[240px]">
+            <div class="max-w-3xl mx-auto px-24 py-16">
+                
+                <div class="mb-16 text-center">
+                    <h1 class="text-4xl font-semibold text-[#37352F] mb-4">Common Essay Strategies</h1>
+                    <p class="text-base text-[#787774] mb-6">Now that you have your research, identify which essay type you need to write.</p>
+                    <div class="bg-amber-50 border-l-2 border-amber-500 p-4 rounded inline-block text-left">
+                        <p class="text-xs font-medium text-amber-900 mb-1">Note:</p>
+                        <p class="text-xs text-amber-800">These are not the only supplemental essays you will encounter, but they are the most common archetypes. These strategies also apply to many of the UC Personal Insight Questions (PIQs).</p>
                     </div>
                 </div>
-            );
-        };
 
-        const ResearchCarousel = () => {
-            const [active, setActive] = useState(0);
-            
-            const sources = [
-                {
-                    title: "Department Website",
-                    subtitle: "The \"Meat\"",
-                    icon: "🏢",
-                    headline: "Start Here.",
-                    subtext: "University homepages are for parents; Department pages are for students.",
-                    actions: [
-                        "Go directly to the department page for your major.",
-                        "Scan course descriptions (look for upper-level electives; Intro 101 classes are the same at every college)."
-                    ],
-                    keyStep: "Identify 2-3 professors. Read the 1-sentence summaries of their research."
-                },
-                {
-                    title: "Social Media",
-                    subtitle: "#StudentLife",
-                    icon: "#️⃣",
-                    headline: "Get the Vibe.",
-                    subtext: "Find the authentic, unfiltered culture.",
-                    actions: [
-                        "Search hashtags like #UniversityNameStudent.",
-                        "Check TikTok/Instagram for \"Day in the Life\" content."
-                    ],
-                    keyStep: "Look at posts from the last 30 days-what is happening right now?"
-                },
-                {
-                    title: "Student Newspapers",
-                    subtitle: "The Unfiltered Voice",
-                    icon: "📰",
-                    headline: "Read the Drama.",
-                    subtext: "Find out what students actually care about.",
-                    actions: [
-                        "Google '[School Name] independent student newspaper' (don't just look on the school website).",
-                        "Read the Op-Eds section first."
-                    ],
-                    keyStep: "Look for recent controversies or new initiatives students are debating."
-                },
-                {
-                    title: "Official School Website",
-                    subtitle: "The Alignment Check",
-                    icon: "🛡️",
-                    headline: "Check Values.",
-                    subtext: "Use this last. Do not use this for specific essay details.",
-                    actions: [
-                        "Read the \"About\" or \"Mission\" section.",
-                        "Identify their Core Values keywords (e.g., 'Service', 'Innovation', 'Tradition'). Do these words fit the essay you are writing?"
-                    ],
-                    keyStep: ""
-                }
-            ];
-
-            const source = sources[active];
-
-            return (
-                <div className="bg-white border border-[#E9E9E7] rounded-lg p-12 my-8">
-                    <div className="text-center mb-10">
-                        <div className="text-5xl mb-4">{source.icon}</div>
-                        <h3 className="text-2xl font-semibold text-[#37352F] mb-1">{source.title}</h3>
-                        <p className="text-sm text-[#787774]">{source.subtitle}</p>
-                    </div>
-
-                    <div className="max-w-2xl mx-auto space-y-6">
-                        <div className="bg-[#FAFAFA] p-5 rounded border border-[#E9E9E7]">
-                            <div className="text-sm mb-2">
-                                <span className="font-medium text-[#37352F]">Headline:</span> {source.headline}
-                            </div>
-                            <div className="text-xs text-[#787774]">
-                                <span className="font-medium text-[#37352F]">Subtext:</span> {source.subtext}
-                            </div>
-                        </div>
-
-                        <div className="space-y-3">
-                            {source.actions.map((action, idx) => (
-                                <div key={idx} className="flex gap-3 items-start">
-                                    <span className="flex-shrink-0 w-6 h-6 bg-[#37352F] text-white rounded flex items-center justify-center text-xs font-medium">{idx + 1}</span>
-                                    <p className="text-sm text-[#37352F] pt-0.5">{action}</p>
-                                </div>
-                            ))}
-                        </div>
-
-                        {source.keyStep && (
-                            <div className="bg-[#2383E2] bg-opacity-10 border border-[#2383E2] border-opacity-20 p-5 rounded">
-                                <p className="text-xs font-medium text-[#2383E2] mb-2 uppercase tracking-wide">Key Step</p>
-                                <p className="text-sm text-[#37352F]">{source.keyStep}</p>
-                            </div>
-                        )}
-                    </div>
-
-                    <div className="flex justify-center items-center gap-8 mt-10">
-                        <button 
-                            onClick={() => setActive(prev => prev === 0 ? sources.length - 1 : prev - 1)}
-                            className="w-8 h-8 flex items-center justify-center bg-[#FAFAFA] hover:bg-[#F7F6F5] border border-[#E9E9E7] rounded text-[#37352F]"
-                        >
-                            ←
-                        </button>
-                        
-                        <div className="flex gap-2">
-                            {sources.map((_, i) => (
-                                <button 
-                                    key={i}
-                                    onClick={() => setActive(i)}
-                                    className={`h-1.5 rounded-full ${i === active ? 'w-6 bg-[#37352F]' : 'w-1.5 bg-[#E9E9E7]'}`}
-                                />
-                            ))}
-                        </div>
-
-                        <button 
-                            onClick={() => setActive(prev => prev === sources.length - 1 ? 0 : prev + 1)}
-                            className="w-8 h-8 flex items-center justify-center bg-[#FAFAFA] hover:bg-[#F7F6F5] border border-[#E9E9E7] rounded text-[#37352F]"
-                        >
-                            →
-                        </button>
-                    </div>
-                </div>
-            );
-        };
-
-        const App = () => {
-            const [essaysExpanded, setEssaysExpanded] = useState(true);
-
-            return (
-                <div className="flex min-h-screen">
-                    <Sidebar activeSection="research" essaysExpanded={essaysExpanded} setEssaysExpanded={setEssaysExpanded} />
+                <div class="grid gap-3 mb-16">
                     
-                    <main className="flex-1 ml-[240px]">
-                        <div className="max-w-3xl mx-auto px-24 py-16">
-                            
-                            <div className="mb-16">
-                                <h1 className="text-4xl font-semibold text-[#37352F] mb-4 leading-tight">
-                                    Before You Write, You Research.
-                                </h1>
-                                <div className="space-y-4 text-[#37352F]">
-                                    <p className="text-base">Before you can write a compelling "Why This School" essay, you need to know specific details about the school.</p>
-                                    <p className="text-base">This guide shows you exactly how to research effectively in 20-30 minutes per school.</p>
-                                    <div className="bg-amber-50 border-l-2 border-amber-500 p-4 mt-6 rounded">
-                                        <p className="text-xs font-medium text-amber-900 mb-1">When to use this guide:</p>
-                                        <p className="text-xs text-amber-800">Only for "Why This School" or "Why This Major" essays. Other essay types don't require school research.</p>
-                                    </div>
-                                </div>
+                    <a href="why-school.html" class="group bg-white border border-[#E9E9E7] p-6 rounded hover:bg-[#FAFAFA]">
+                        <div class="flex items-center gap-4">
+                            <div class="text-3xl">🎯</div>
+                            <div class="flex-1">
+                                <h3 class="text-base font-medium text-[#37352F] mb-1">Why This Major + Why This School</h3>
+                                <p class="text-xs text-[#787774]">Show them you know what they have and what you'd do with it.</p>
                             </div>
-
-                            <section className="mb-16">
-                                <h2 className="text-2xl font-semibold text-[#37352F] mb-4">Your Goal</h2>
-                                <div className="bg-[#FAFAFA] border border-[#E9E9E7] p-6 rounded">
-                                    <p className="text-sm text-[#37352F] mb-3">
-                                        You're not trying to become an expert on the entire university. You're collecting 4-5 specific details (programs, professors, courses) to show you've done your homework and understand what makes this school unique.
-                                    </p>
-                                    <p className="text-sm text-[#787774]">
-                                        Don't just Google "Why is Northwestern good?" - you need specific programs, professors, courses, and opportunities that connect to your interests.
-                                    </p>
-                                </div>
-                            </section>
-
-                            <section className="mb-16">
-                                <h2 className="text-2xl font-semibold text-[#37352F] mb-1">The 4 Sources of Truth</h2>
-                                <p className="text-sm text-[#9B9A97] mb-6">20-30 minutes per school</p>
-                                <ResearchCarousel />
-                            </section>
-
-                            <section className="mb-16">
-                                <h2 className="text-2xl font-semibold text-[#37352F] mb-4">Capture Your Research</h2>
-                                <div className="bg-[#FAFAFA] border border-[#E9E9E7] rounded p-8">
-                                    <div className="flex items-center gap-3 mb-5">
-                                        <div className="text-3xl">📋</div>
-                                        <div>
-                                            <div className="text-base font-medium text-[#37352F]">The 20-Minute Research Timer</div>
-                                            <p className="text-xs text-[#787774]">Copy this list into a blank Google Doc. Fill it out for every school.</p>
-                                        </div>
-                                    </div>
-                                    
-                                    <div className="bg-white border border-[#E9E9E7] rounded p-6 space-y-2 text-xs text-[#37352F]">
-                                        <div>• School Name: ___________</div>
-                                        <div>• Specific Programs/Majors: ___________</div>
-                                        <div>• Faculty Members: (Name + 1 sentence on their research)</div>
-                                        <div>• Specific Courses: (Names and numbers)</div>
-                                        <div>• Labs or Centers: ___________</div>
-                                        <div>• Unique Opportunities: (Study abroad, specific grants)</div>
-                                        <div>• Campus Culture Notes: ___________</div>
-                                        <div>• Essay Angle: (How does this connect to me?)</div>
-                                    </div>
-
-                                    <div className="mt-5 bg-blue-50 border-l-2 border-[#2383E2] p-4 rounded">
-                                        <p className="text-xs font-medium text-[#2383E2] mb-1">Pro tip:</p>
-                                        <p className="text-xs text-[#37352F]">Set a timer for 20 minutes per school. You're not writing a research paper - you're collecting 4-5 specific details.</p>
-                                    </div>
-                                </div>
-                            </section>
-
-                            <section className="mb-16">
-                                <h2 className="text-2xl font-semibold text-[#37352F] mb-6">What Good Research Looks Like</h2>
-                                <div className="grid md:grid-cols-2 gap-0 border border-[#E9E9E7] rounded overflow-hidden">
-                                    <div className="bg-white p-8 border-r border-[#E9E9E7]">
-                                        <div className="flex items-center gap-2 mb-4 text-[#787774]">
-                                            <span className="text-lg">❌</span>
-                                            <h3 className="text-sm font-medium">Weak (Too General)</h3>
-                                        </div>
-                                        <ul className="space-y-2 text-xs text-[#787774]">
-                                            <li className="flex items-start gap-2">
-                                                <span>•</span>
-                                                <span>"Northwestern has a strong journalism program"</span>
-                                            </li>
-                                            <li className="flex items-start gap-2">
-                                                <span>•</span>
-                                                <span>"The campus is beautiful"</span>
-                                            </li>
-                                            <li className="flex items-start gap-2">
-                                                <span>•</span>
-                                                <span>"They have a good alumni network"</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div className="bg-[#FAFAFA] p-8">
-                                        <div className="flex items-center gap-2 mb-4 text-[#37352F]">
-                                            <span className="text-lg">✅</span>
-                                            <h3 className="text-sm font-medium">Strong (Specific)</h3>
-                                        </div>
-                                        <ul className="space-y-2 text-xs text-[#37352F]">
-                                            <li className="flex items-start gap-2">
-                                                <span>•</span>
-                                                <span>"Medill's required journalism residency in Washington, D.C."</span>
-                                            </li>
-                                            <li className="flex items-start gap-2">
-                                                <span>•</span>
-                                                <span>"Professor Chen's research on CRISPR applications in agricultural crops"</span>
-                                            </li>
-                                            <li className="flex items-start gap-2">
-                                                <span>•</span>
-                                                <span>"The Undergraduate Research Grant program that funded 87% of applicants"</span>
-                                            </li>
-                                        </ul>
-                                        <p className="mt-4 pt-4 border-t border-[#E9E9E7] text-xs font-medium text-[#37352F]">
-                                            The difference: Specificity. Names, numbers, program titles, course codes.
-                                        </p>
-                                    </div>
-                                </div>
-                            </section>
-
-                            <section className="mb-16">
-                                <div className="bg-[#37352F] text-white p-8 rounded">
-                                    <h2 className="text-xl font-semibold mb-1">Secondary Research</h2>
-                                    <p className="text-sm text-[#9B9A97] mb-5">(If Schedule Permits)</p>
-                                    <p className="text-sm mb-5 text-[#E9E9E7]">Don't delay your core research waiting for these, but if they are available, use them.</p>
-                                    <div className="bg-[#FAFAFA] text-[#37352F] p-5 rounded">
-                                        <h3 className="text-sm font-medium mb-2">Virtual Events & Rep Visits:</h3>
-                                        <p className="text-xs mb-4">If a rep visits your high school or there is a virtual info session, attend it.</p>
-                                        <div className="border-t border-[#E9E9E7] pt-3">
-                                            <p className="text-xs font-medium text-[#2383E2] mb-1 uppercase">The Strategy</p>
-                                            <p className="text-xs text-[#787774]">Do your core research (Sources 1-4) first. Then, use these sessions to ask specific questions about what you found (e.g., "I saw Professor Chen is researching CRISPR...").</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-
-                            <div className="text-center bg-[#FAFAFA] border border-[#E9E9E7] p-10 rounded">
-                                <h2 className="text-xl font-semibold text-[#37352F] mb-3">Ready to Write?</h2>
-                                <p className="text-sm text-[#787774] mb-6">Now that you know how to research, let's explore the common essay strategies.</p>
-                                <a href="strategies.html" className="inline-block bg-[#2383E2] text-white font-medium text-sm px-5 py-2.5 rounded hover:bg-[#1a6ec9]">
-                                    View Essay Strategies →
-                                </a>
-                            </div>
-
+                            <span class="text-[#9B9A97] text-lg">→</span>
                         </div>
-                    </main>
-                </div>
-            );
-        };
+                    </a>
 
-        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
-    </script>
+                    <a href="community.html" class="group bg-white border border-[#E9E9E7] p-6 rounded hover:bg-[#FAFAFA]">
+                        <div class="flex items-center gap-4">
+                            <div class="text-3xl">👥</div>
+                            <div class="flex-1">
+                                <h3 class="text-base font-medium text-[#37352F] mb-1">Community/Identity/Background</h3>
+                                <p class="text-xs text-[#787774]">Who are you, and how will you contribute to campus?</p>
+                            </div>
+                            <span class="text-[#9B9A97] text-lg">→</span>
+                        </div>
+                    </a>
+
+                    <a href="activity.html" class="group bg-white border border-[#E9E9E7] p-6 rounded hover:bg-[#FAFAFA]">
+                        <div class="flex items-center gap-4">
+                            <div class="text-3xl">✨</div>
+                            <div class="flex-1">
+                                <h3 class="text-base font-medium text-[#37352F] mb-1">The Meaningful Extracurricular/Activity</h3>
+                                <p class="text-xs text-[#787774]">What do you choose to do when nobody's making you?</p>
+                            </div>
+                            <span class="text-[#9B9A97] text-lg">→</span>
+                        </div>
+                    </a>
+
+                    <a href="leadership.html" class="group bg-white border border-[#E9E9E7] p-6 rounded hover:bg-[#FAFAFA]">
+                        <div class="flex items-center gap-4">
+                            <div class="text-3xl">📈</div>
+                            <div class="flex-1">
+                                <h3 class="text-base font-medium text-[#37352F] mb-1">Leadership/Impact Experience</h3>
+                                <p class="text-xs text-[#787774]">Titles don't matter. Impact does.</p>
+                            </div>
+                            <span class="text-[#9B9A97] text-lg">→</span>
+                        </div>
+                    </a>
+
+                    <a href="intellectual.html" class="group bg-white border border-[#E9E9E7] p-6 rounded hover:bg-[#FAFAFA]">
+                        <div class="flex items-center gap-4">
+                            <div class="text-3xl">🧠</div>
+                            <div class="flex-1">
+                                <h3 class="text-base font-medium text-[#37352F] mb-1">Academic/Intellectual Passion</h3>
+                                <p class="text-xs text-[#787774]">Show them you genuinely can't stop thinking about this.</p>
+                            </div>
+                            <span class="text-[#9B9A97] text-lg">→</span>
+                        </div>
+                    </a>
+
+                </div>
+
+                <div class="text-center bg-[#37352F] text-white p-10 rounded">
+                    <h2 class="text-xl font-semibold mb-3">Ready to Start Writing?</h2>
+                    <p class="text-sm text-[#E9E9E7] mb-6">Head to the workshop for step-by-step drafting and revision guidance.</p>
+                    <a href="workshop.html" class="inline-block bg-[#2383E2] text-white font-medium text-sm px-5 py-2.5 rounded hover:bg-[#1a6ec9]">Go to Workshop →</a>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
 </body>
 </html>
