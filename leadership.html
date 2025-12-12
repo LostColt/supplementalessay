@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leadership Essay | Supplemental Essay Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="bg-slate-50">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        const Nav = () => (
+            <nav className="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+                <div className="max-w-7xl mx-auto px-6 py-4">
+                    <div className="flex items-center justify-between">
+                        <div>
+                            <h1 className="font-serif text-2xl font-bold text-slate-900">Supplemental Essay Guide</h1>
+                            <p className="text-sm text-slate-600">Gulliver Prep</p>
+                        </div>
+                        <div className="flex gap-6">
+                            <a href="index.html" className="text-slate-600 hover:text-slate-900">Research</a>
+                            <a href="strategies.html" className="text-slate-600 hover:text-slate-900">Strategies</a>
+                            <a href="workshop.html" className="text-slate-600 hover:text-slate-900">Workshop</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        );
+
+        const BrainstormDeck = () => {
+            const [active, setActive] = useState(0);
+            
+            const questions = [
+                "What problem or opportunity did you notice that other people weren't paying attention to?",
+                "What did you actually do about it?",
+                "What didn't work the first time? How did you adjust?",
+                "Who did you work with and how did you get them on board?",
+                "What actually changed because of your involvement?",
+                "What did you learn about leadership through this experience?"
+            ];
+
+            return (
+                <div className="bg-gradient-to-br from-emerald-600 to-teal-700 text-white p-10 rounded-2xl shadow-lg">
+                    <div className="text-center mb-8">
+                        <p className="text-sm font-bold uppercase tracking-wider text-emerald-100 mb-2">Question {active + 1} of {questions.length}</p>
+                        <p className="text-3xl font-serif font-bold leading-relaxed">{questions[active]}</p>
+                    </div>
+                    <div className="flex justify-center gap-4">
+                        <button 
+                            onClick={() => setActive(prev => prev === 0 ? questions.length - 1 : prev - 1)}
+                            className="px-6 py-3 bg-white/20 hover:bg-white/30 rounded-lg transition"
+                        >
+                            ← Previous
+                        </button>
+                        <button 
+                            onClick={() => setActive(prev => prev === questions.length - 1 ? 0 : prev + 1)}
+                            className="px-6 py-3 bg-white text-emerald-600 hover:bg-emerald-50 font-bold rounded-lg transition"
+                        >
+                            Next Question →
+                        </button>
+                    </div>
+                </div>
+            );
+        };
+
+        const App = () => (
+            <div>
+                <Nav />
+                
+                <main className="max-w-4xl mx-auto px-6 py-16">
+                    
+                    <div className="text-sm text-slate-500 mb-8">
+                        <a href="strategies.html" className="hover:text-slate-700">← Back to Strategies</a>
+                    </div>
+
+                    <h1 className="font-serif text-5xl md:text-6xl font-bold text-slate-900 mb-12 leading-tight">
+                        Leadership/Impact<br/>Experience
+                    </h1>
+
+                    <div className="prose prose-lg text-slate-700 max-w-none mb-16 space-y-6">
+                        <p className="text-xl">Here's the thing about leadership essays: schools don't just want to know that you were captain or president of something. They want to see that you actually made something happen.</p>
+
+                        <div className="bg-emerald-50 border-l-4 border-emerald-600 p-8 rounded-r-xl">
+                            <p className="text-2xl font-serif font-bold text-slate-900 mb-0">
+                                Remember: Titles don't matter. Impact does.
+                            </p>
+                        </div>
+
+                        <p>Did you notice a problem? Did you do something about it?</p>
+
+                        <div className="bg-white p-8 rounded-xl border border-slate-200 shadow-sm">
+                            <p className="text-slate-700 mb-0">Impact can be small and still matter. You noticed your robotics team had terrible communication, so you started a shared system that everyone actually used. You saw your school's recycling program was a mess, so you reorganized it.</p>
+                        </div>
+                    </div>
+
+                    <section className="mb-16">
+                        <h2 className="font-serif text-3xl font-bold text-slate-900 mb-6">Brainstorming Your Content</h2>
+                        <BrainstormDeck />
+                    </section>
+
+                    <section className="mb-16">
+                        <h2 className="font-serif text-3xl font-bold text-slate-900 mb-6">Show Your Leadership Style</h2>
+                        <div className="bg-white p-8 rounded-xl border border-slate-200 shadow-sm">
+                            <p className="text-slate-700 mb-0">Different people lead in different ways. Some lead by asking good questions. Some lead by doing the work nobody else wants to do. The essay should show YOUR style.</p>
+                        </div>
+                    </section>
+
+                    <section className="mb-16">
+                        <h2 className="font-serif text-3xl font-bold text-slate-900 mb-6">How to Open Strong</h2>
+                        <div className="grid md:grid-cols-2 gap-0 rounded-2xl overflow-hidden shadow-lg">
+                            <div className="bg-white p-10 border-r border-slate-200">
+                                <div className="flex items-center gap-3 mb-6 text-red-600">
+                                    <span className="text-2xl">😴</span>
+                                    <h3 className="font-bold text-xl">The Snooze Button</h3>
+                                </div>
+                                <p className="text-slate-500 italic mb-2 text-sm uppercase tracking-wide">Generic</p>
+                                <p className="text-slate-700">"I am a natural leader and have always enjoyed taking charge of group projects."</p>
+                            </div>
+                            <div className="bg-gradient-to-br from-emerald-600 to-teal-700 p-10 text-white">
+                                <div className="flex items-center gap-3 mb-6">
+                                    <span className="text-2xl">⚡</span>
+                                    <h3 className="font-bold text-xl">The Hook</h3>
+                                </div>
+                                <p className="text-emerald-100 mb-2 text-sm uppercase tracking-wide">Specific</p>
+                                <p>"Three weeks into freshman year, I realized our debate team had a problem. The seniors ran every practice, chose every topic, and made every decision. The underclassmen just sat there."</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section className="mb-16">
+                        <h2 className="font-serif text-3xl font-bold text-slate-900 mb-6">Don't Skip the Hard Parts</h2>
+                        <p className="text-lg text-slate-600 mb-8">The best leadership essays show the actual process-the resistance you got, the mistakes you made, the adjustments you had to make along the way.</p>
+                        
+                        <div className="grid md:grid-cols-2 gap-6">
+                            <div className="bg-red-50 border-l-4 border-red-500 p-6 rounded-r-lg">
+                                <p className="font-bold text-red-900 mb-2">Surface level:</p>
+                                <p className="text-red-800 italic">"I organized a school fundraiser and we raised $2,000 for charity. It was very successful."</p>
+                            </div>
+                            
+                            <div className="bg-emerald-50 border-l-4 border-emerald-600 p-6 rounded-r-lg">
+                                <p className="font-bold text-emerald-900 mb-2">Shows real leadership:</p>
+                                <p className="text-emerald-800 italic text-sm">"I proposed a school fundraiser, but the student council said no one would show up. So I spent a week surveying classes... brought back data... and got approval. Then our lead performer dropped out two days before the event... I had to convince three nervous freshmen that their poetry slam act was exactly what we needed. We raised $2,000, but more importantly, those freshmen kept performing all year."</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div className="flex justify-between items-center pt-12 border-t border-slate-200">
+                        <a href="activity.html" className="text-slate-600 hover:text-slate-900 flex items-center gap-2">
+                            ← Previous: Activity
+                        </a>
+                        <a href="intellectual.html" className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition flex items-center gap-2">
+                            Next: Intellectual Passion →
+                        </a>
+                    </div>
+
+                </main>
+
+                <footer className="bg-white border-t border-slate-200 mt-20 py-12">
+                    <div className="max-w-5xl mx-auto px-6 text-center text-slate-600">
+                        <p className="font-bold text-slate-900 mb-2">David Tran</p>
+                        <p className="text-sm">College Essay Writing Coach • Gulliver Prep</p>
+                        <p className="text-sm mt-4">dtran@gulliverprep.org</p>
+                    </div>
+                </footer>
+            </div>
+        );
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
+</body>
+</html>
