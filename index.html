@@ -8,32 +8,15 @@
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        body { 
-            font-family: 'Inter', sans-serif; 
-            color: #1e293b;
-        }
-        h1, h2, h3, h4, .font-serif { 
-            font-family: 'Crimson Pro', serif; 
-            font-weight: 600;
-        }
-        html { scroll-behavior: smooth; }
-        
-        /* Sidebar */
-        .sidebar {
-            width: 280px;
-            background: linear-gradient(180deg, #003057 0%, #002847 100%);
-        }
-        
-        /* Smooth transitions */
-        * {
-            transition: all 0.2s ease;
-        }
+        * { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
+        body { color: #37352F; }
+        .sidebar { width: 240px; background: #FAFAFA; border-right: 1px solid #E9E9E7; }
     </style>
 </head>
-<body class="bg-stone-50">
+<body class="bg-white">
     <div id="root"></div>
 
     <script type="text/babel">
@@ -58,62 +41,56 @@
             ];
 
             return (
-                <div className="sidebar fixed left-0 top-0 h-screen text-white flex flex-col shadow-2xl">
-                    {/* Header */}
-                    <div className="p-8 border-b border-white/10">
-                        <h1 className="font-serif text-2xl font-bold mb-1 tracking-tight">Gulliver Prep</h1>
-                        <div className="h-px w-16 bg-white/30 mb-3"></div>
-                        <p className="text-xs text-blue-200 uppercase tracking-widest font-semibold">Supplemental Essays</p>
+                <div className="sidebar fixed left-0 top-0 h-screen flex flex-col">
+                    <div className="px-6 py-4 border-b border-[#E9E9E7]">
+                        <div className="text-sm font-semibold text-[#37352F] mb-1">Gulliver Prep</div>
+                        <div className="text-xs text-[#787774]">Supplemental Essays</div>
                     </div>
 
-                    {/* Navigation */}
-                    <nav className="flex-1 p-6 overflow-y-auto">
-                        <ul className="space-y-2">
+                    <nav className="flex-1 px-3 py-4 overflow-y-auto">
+                        <div className="space-y-1">
                             {navItems.map((item) => (
-                                <li key={item.id}>
+                                <div key={item.id}>
                                     <a 
                                         href={item.href}
-                                        className={`block px-4 py-3 rounded-lg font-medium text-sm ${
+                                        className={`block px-3 py-1.5 rounded text-sm ${
                                             activeSection === item.id 
-                                                ? 'bg-white/15 text-white' 
-                                                : 'text-blue-100 hover:bg-white/5 hover:text-white'
+                                                ? 'bg-[#F7F6F5] text-[#37352F] font-medium' 
+                                                : 'text-[#787774] hover:bg-[#F7F6F5]'
                                         }`}
                                     >
                                         {item.label}
                                     </a>
                                     
                                     {item.children && essaysExpanded && (
-                                        <ul className="mt-2 ml-4 space-y-1 border-l border-white/10 pl-4">
+                                        <div className="ml-3 mt-1 space-y-1 border-l border-[#E9E9E7] pl-3">
                                             {item.children.map((child) => (
-                                                <li key={child.id}>
-                                                    <a 
-                                                        href={child.href}
-                                                        className="block px-3 py-2 rounded text-sm text-blue-200 hover:text-white hover:bg-white/5"
-                                                    >
-                                                        {child.label}
-                                                    </a>
-                                                </li>
+                                                <a 
+                                                    key={child.id}
+                                                    href={child.href}
+                                                    className="block px-2 py-1 rounded text-xs text-[#9B9A97] hover:text-[#37352F] hover:bg-[#F7F6F5]"
+                                                >
+                                                    {child.label}
+                                                </a>
                                             ))}
-                                        </ul>
+                                        </div>
                                     )}
-                                </li>
+                                </div>
                             ))}
-                        </ul>
+                        </div>
 
                         <button 
                             onClick={() => setEssaysExpanded(!essaysExpanded)}
-                            className="mt-6 w-full px-4 py-2 text-xs text-blue-200 hover:text-white hover:bg-white/5 rounded-lg flex items-center justify-center gap-2"
+                            className="w-full mt-4 px-3 py-1.5 text-xs text-[#9B9A97] hover:text-[#37352F] text-left"
                         >
-                            <span>{essaysExpanded ? '← Collapse Essays' : '→ Expand Essays'}</span>
+                            {essaysExpanded ? '← Collapse' : '→ Expand essays'}
                         </button>
                     </nav>
 
-                    {/* Footer */}
-                    <div className="p-6 border-t border-white/10 text-sm">
-                        <p className="font-semibold text-white mb-1">David Tran</p>
-                        <p className="text-blue-200 text-xs mb-2">Writing Coach</p>
-                        <p className="text-blue-200 text-xs mb-3">Gulliver Prep</p>
-                        <a href="mailto:dtran@gulliverprep.org" className="text-xs text-blue-300 hover:text-white underline">
+                    <div className="px-6 py-4 border-t border-[#E9E9E7] text-xs">
+                        <div className="font-medium text-[#37352F] mb-0.5">David Tran</div>
+                        <div className="text-[#9B9A97] mb-2">Writing Coach<br/>Gulliver Prep</div>
+                        <a href="mailto:dtran@gulliverprep.org" className="text-[#2383E2] hover:underline">
                             dtran@gulliverprep.org
                         </a>
                     </div>
@@ -178,68 +155,64 @@
             const source = sources[active];
 
             return (
-                <div className="bg-white rounded-2xl shadow-sm border border-stone-200 p-12 my-12 relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-96 h-96 bg-blue-50 rounded-full blur-3xl opacity-40 -translate-y-1/2 translate-x-1/2"></div>
-                    
-                    <div className="relative z-10">
-                        <div className="text-center mb-10">
-                            <div className="text-6xl mb-4">{source.icon}</div>
-                            <h3 className="font-serif text-4xl font-bold text-slate-900 mb-2">{source.title}</h3>
-                            <p className="text-xl text-blue-600 font-medium">{source.subtitle}</p>
+                <div className="bg-white border border-[#E9E9E7] rounded-lg p-12 my-8">
+                    <div className="text-center mb-10">
+                        <div className="text-5xl mb-4">{source.icon}</div>
+                        <h3 className="text-2xl font-semibold text-[#37352F] mb-1">{source.title}</h3>
+                        <p className="text-sm text-[#787774]">{source.subtitle}</p>
+                    </div>
+
+                    <div className="max-w-2xl mx-auto space-y-6">
+                        <div className="bg-[#FAFAFA] p-5 rounded border border-[#E9E9E7]">
+                            <div className="text-sm mb-2">
+                                <span className="font-medium text-[#37352F]">Headline:</span> {source.headline}
+                            </div>
+                            <div className="text-xs text-[#787774]">
+                                <span className="font-medium text-[#37352F]">Subtext:</span> {source.subtext}
+                            </div>
                         </div>
 
-                        <div className="max-w-2xl mx-auto space-y-6">
-                            <div className="bg-stone-50 p-6 rounded-xl border border-stone-200">
-                                <h4 className="font-semibold text-slate-900 mb-2">
-                                    <span className="text-slate-500">Headline:</span> {source.headline}
-                                </h4>
-                                <p className="text-slate-600 italic text-sm">
-                                    <span className="text-slate-500 not-italic">Subtext:</span> {source.subtext}
-                                </p>
-                            </div>
-
-                            <div className="space-y-3">
-                                {source.actions.map((action, idx) => (
-                                    <div key={idx} className="flex gap-3 items-start">
-                                        <span className="flex-shrink-0 w-7 h-7 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">{idx + 1}</span>
-                                        <p className="text-slate-700 pt-0.5">{action}</p>
-                                    </div>
-                                ))}
-                            </div>
-
-                            {source.keyStep && (
-                                <div className="bg-gradient-to-br from-blue-600 to-blue-700 text-white p-6 rounded-xl">
-                                    <p className="text-xs font-bold uppercase tracking-wider mb-2 opacity-80">Key Step</p>
-                                    <p className="font-medium">{source.keyStep}</p>
+                        <div className="space-y-3">
+                            {source.actions.map((action, idx) => (
+                                <div key={idx} className="flex gap-3 items-start">
+                                    <span className="flex-shrink-0 w-6 h-6 bg-[#37352F] text-white rounded flex items-center justify-center text-xs font-medium">{idx + 1}</span>
+                                    <p className="text-sm text-[#37352F] pt-0.5">{action}</p>
                                 </div>
-                            )}
+                            ))}
                         </div>
 
-                        <div className="flex justify-center items-center gap-8 mt-12">
-                            <button 
-                                onClick={() => setActive(prev => prev === 0 ? sources.length - 1 : prev - 1)}
-                                className="w-12 h-12 flex items-center justify-center bg-stone-100 hover:bg-stone-200 text-slate-700 rounded-full font-bold text-xl"
-                            >
-                                ←
-                            </button>
-                            
-                            <div className="flex gap-2">
-                                {sources.map((_, i) => (
-                                    <button 
-                                        key={i}
-                                        onClick={() => setActive(i)}
-                                        className={`h-2 rounded-full ${i === active ? 'w-8 bg-blue-600' : 'w-2 bg-stone-300 hover:bg-stone-400'}`}
-                                    />
-                                ))}
+                        {source.keyStep && (
+                            <div className="bg-[#2383E2] bg-opacity-10 border border-[#2383E2] border-opacity-20 p-5 rounded">
+                                <p className="text-xs font-medium text-[#2383E2] mb-2 uppercase tracking-wide">Key Step</p>
+                                <p className="text-sm text-[#37352F]">{source.keyStep}</p>
                             </div>
+                        )}
+                    </div>
 
-                            <button 
-                                onClick={() => setActive(prev => prev === sources.length - 1 ? 0 : prev + 1)}
-                                className="w-12 h-12 flex items-center justify-center bg-stone-100 hover:bg-stone-200 text-slate-700 rounded-full font-bold text-xl"
-                            >
-                                →
-                            </button>
+                    <div className="flex justify-center items-center gap-8 mt-10">
+                        <button 
+                            onClick={() => setActive(prev => prev === 0 ? sources.length - 1 : prev - 1)}
+                            className="w-8 h-8 flex items-center justify-center bg-[#FAFAFA] hover:bg-[#F7F6F5] border border-[#E9E9E7] rounded text-[#37352F]"
+                        >
+                            ←
+                        </button>
+                        
+                        <div className="flex gap-2">
+                            {sources.map((_, i) => (
+                                <button 
+                                    key={i}
+                                    onClick={() => setActive(i)}
+                                    className={`h-1.5 rounded-full ${i === active ? 'w-6 bg-[#37352F]' : 'w-1.5 bg-[#E9E9E7]'}`}
+                                />
+                            ))}
                         </div>
+
+                        <button 
+                            onClick={() => setActive(prev => prev === sources.length - 1 ? 0 : prev + 1)}
+                            className="w-8 h-8 flex items-center justify-center bg-[#FAFAFA] hover:bg-[#F7F6F5] border border-[#E9E9E7] rounded text-[#37352F]"
+                        >
+                            →
+                        </button>
                     </div>
                 </div>
             );
@@ -252,151 +225,139 @@
                 <div className="flex min-h-screen">
                     <Sidebar activeSection="research" essaysExpanded={essaysExpanded} setEssaysExpanded={setEssaysExpanded} />
                     
-                    <main className="flex-1 ml-[280px]">
-                        <div className="max-w-4xl mx-auto px-12 py-16">
+                    <main className="flex-1 ml-[240px]">
+                        <div className="max-w-3xl mx-auto px-24 py-16">
                             
-                            {/* Hero */}
-                            <div className="mb-20">
-                                <h1 className="font-serif text-6xl font-bold text-slate-900 mb-6 leading-tight">
-                                    Before You Write,<br/>
-                                    <span className="text-blue-600">You Research.</span>
+                            <div className="mb-16">
+                                <h1 className="text-4xl font-semibold text-[#37352F] mb-4 leading-tight">
+                                    Before You Write, You Research.
                                 </h1>
-                                <div className="prose prose-lg text-slate-600 leading-relaxed">
-                                    <p className="text-xl mb-4">Before you can write a compelling "Why This School" essay, you need to know specific details about the school.</p>
-                                    <p className="text-xl mb-6">This guide shows you exactly how to research effectively in 20-30 minutes per school.</p>
-                                    <div className="bg-amber-50 border-l-4 border-amber-500 p-6 rounded-r-xl">
-                                        <p className="font-semibold text-amber-900 mb-2 text-sm">When to use this guide:</p>
-                                        <p className="text-amber-800 m-0">Only for "Why This School" or "Why This Major" essays. Other essay types don't require school research.</p>
+                                <div className="space-y-4 text-[#37352F]">
+                                    <p className="text-base">Before you can write a compelling "Why This School" essay, you need to know specific details about the school.</p>
+                                    <p className="text-base">This guide shows you exactly how to research effectively in 20-30 minutes per school.</p>
+                                    <div className="bg-amber-50 border-l-2 border-amber-500 p-4 mt-6 rounded">
+                                        <p className="text-xs font-medium text-amber-900 mb-1">When to use this guide:</p>
+                                        <p className="text-xs text-amber-800">Only for "Why This School" or "Why This Major" essays. Other essay types don't require school research.</p>
                                     </div>
                                 </div>
                             </div>
 
-                            {/* Your Goal */}
-                            <section className="mb-20">
-                                <h2 className="font-serif text-4xl font-bold text-slate-900 mb-6">Your Goal</h2>
-                                <div className="bg-white p-8 rounded-xl border border-stone-200 shadow-sm">
-                                    <p className="text-lg text-slate-700 mb-4 leading-relaxed">
+                            <section className="mb-16">
+                                <h2 className="text-2xl font-semibold text-[#37352F] mb-4">Your Goal</h2>
+                                <div className="bg-[#FAFAFA] border border-[#E9E9E7] p-6 rounded">
+                                    <p className="text-sm text-[#37352F] mb-3">
                                         You're not trying to become an expert on the entire university. You're collecting 4-5 specific details (programs, professors, courses) to show you've done your homework and understand what makes this school unique.
                                     </p>
-                                    <p className="text-slate-600 leading-relaxed">
+                                    <p className="text-sm text-[#787774]">
                                         Don't just Google "Why is Northwestern good?" - you need specific programs, professors, courses, and opportunities that connect to your interests.
                                     </p>
                                 </div>
                             </section>
 
-                            {/* 4 Sources */}
-                            <section className="mb-20">
-                                <h2 className="font-serif text-4xl font-bold text-slate-900 mb-2">
-                                    The 4 Sources of Truth
-                                </h2>
-                                <p className="text-lg text-slate-500 mb-8 font-light italic">20-30 minutes per school</p>
+                            <section className="mb-16">
+                                <h2 className="text-2xl font-semibold text-[#37352F] mb-1">The 4 Sources of Truth</h2>
+                                <p className="text-sm text-[#9B9A97] mb-6">20-30 minutes per school</p>
                                 <ResearchCarousel />
                             </section>
 
-                            {/* Capture Template */}
-                            <section className="mb-20">
-                                <h2 className="font-serif text-4xl font-bold text-slate-900 mb-6">Capture Your Research</h2>
-                                <div className="bg-stone-100 border border-stone-300 rounded-2xl p-10">
-                                    <div className="flex items-center gap-4 mb-6">
-                                        <div className="text-4xl">📋</div>
+                            <section className="mb-16">
+                                <h2 className="text-2xl font-semibold text-[#37352F] mb-4">Capture Your Research</h2>
+                                <div className="bg-[#FAFAFA] border border-[#E9E9E7] rounded p-8">
+                                    <div className="flex items-center gap-3 mb-5">
+                                        <div className="text-3xl">📋</div>
                                         <div>
-                                            <h3 className="font-serif text-2xl font-bold text-slate-900">The 20-Minute Research Timer</h3>
-                                            <p className="text-slate-600">Copy this list into a blank Google Doc. Fill it out for every school.</p>
+                                            <div className="text-base font-medium text-[#37352F]">The 20-Minute Research Timer</div>
+                                            <p className="text-xs text-[#787774]">Copy this list into a blank Google Doc. Fill it out for every school.</p>
                                         </div>
                                     </div>
                                     
-                                    <div className="bg-white rounded-xl p-8 space-y-2 text-sm shadow-inner border border-stone-200">
-                                        <div className="text-slate-700">• School Name: ___________</div>
-                                        <div className="text-slate-700">• Specific Programs/Majors: ___________</div>
-                                        <div className="text-slate-700">• Faculty Members: (Name + 1 sentence on their research)</div>
-                                        <div className="text-slate-700">• Specific Courses: (Names and numbers)</div>
-                                        <div className="text-slate-700">• Labs or Centers: ___________</div>
-                                        <div className="text-slate-700">• Unique Opportunities: (Study abroad, specific grants)</div>
-                                        <div className="text-slate-700">• Campus Culture Notes: ___________</div>
-                                        <div className="text-slate-700">• Essay Angle: (How does this connect to me?)</div>
+                                    <div className="bg-white border border-[#E9E9E7] rounded p-6 space-y-2 text-xs text-[#37352F]">
+                                        <div>• School Name: ___________</div>
+                                        <div>• Specific Programs/Majors: ___________</div>
+                                        <div>• Faculty Members: (Name + 1 sentence on their research)</div>
+                                        <div>• Specific Courses: (Names and numbers)</div>
+                                        <div>• Labs or Centers: ___________</div>
+                                        <div>• Unique Opportunities: (Study abroad, specific grants)</div>
+                                        <div>• Campus Culture Notes: ___________</div>
+                                        <div>• Essay Angle: (How does this connect to me?)</div>
                                     </div>
 
-                                    <div className="mt-6 bg-blue-50 border-l-4 border-blue-600 p-6 rounded-r-xl">
-                                        <p className="font-semibold text-blue-900 mb-2 text-sm">Pro tip:</p>
-                                        <p className="text-blue-800 text-sm">Set a timer for 20 minutes per school. You're not writing a research paper - you're collecting 4-5 specific details.</p>
+                                    <div className="mt-5 bg-blue-50 border-l-2 border-[#2383E2] p-4 rounded">
+                                        <p className="text-xs font-medium text-[#2383E2] mb-1">Pro tip:</p>
+                                        <p className="text-xs text-[#37352F]">Set a timer for 20 minutes per school. You're not writing a research paper - you're collecting 4-5 specific details.</p>
                                     </div>
                                 </div>
                             </section>
 
-                            {/* Comparison */}
-                            <section className="mb-20">
-                                <h2 className="font-serif text-4xl font-bold text-slate-900 mb-8">What Good Research Looks Like</h2>
-                                <div className="grid md:grid-cols-2 gap-0 rounded-2xl overflow-hidden shadow-lg border border-stone-200">
-                                    <div className="bg-white p-10">
-                                        <div className="flex items-center gap-3 mb-6 text-red-500">
-                                            <span className="text-2xl">❌</span>
-                                            <h3 className="font-bold text-lg">Weak (Too General)</h3>
+                            <section className="mb-16">
+                                <h2 className="text-2xl font-semibold text-[#37352F] mb-6">What Good Research Looks Like</h2>
+                                <div className="grid md:grid-cols-2 gap-0 border border-[#E9E9E7] rounded overflow-hidden">
+                                    <div className="bg-white p-8 border-r border-[#E9E9E7]">
+                                        <div className="flex items-center gap-2 mb-4 text-[#787774]">
+                                            <span className="text-lg">❌</span>
+                                            <h3 className="text-sm font-medium">Weak (Too General)</h3>
                                         </div>
-                                        <ul className="space-y-3 text-slate-600">
+                                        <ul className="space-y-2 text-xs text-[#787774]">
                                             <li className="flex items-start gap-2">
-                                                <span className="text-red-400 mt-1">•</span>
+                                                <span>•</span>
                                                 <span>"Northwestern has a strong journalism program"</span>
                                             </li>
                                             <li className="flex items-start gap-2">
-                                                <span className="text-red-400 mt-1">•</span>
+                                                <span>•</span>
                                                 <span>"The campus is beautiful"</span>
                                             </li>
                                             <li className="flex items-start gap-2">
-                                                <span className="text-red-400 mt-1">•</span>
+                                                <span>•</span>
                                                 <span>"They have a good alumni network"</span>
                                             </li>
                                         </ul>
                                     </div>
-                                    <div className="bg-gradient-to-br from-blue-600 to-blue-700 p-10 text-white">
-                                        <div className="flex items-center gap-3 mb-6">
-                                            <span className="text-2xl">✅</span>
-                                            <h3 className="font-bold text-lg">Strong (Specific)</h3>
+                                    <div className="bg-[#FAFAFA] p-8">
+                                        <div className="flex items-center gap-2 mb-4 text-[#37352F]">
+                                            <span className="text-lg">✅</span>
+                                            <h3 className="text-sm font-medium">Strong (Specific)</h3>
                                         </div>
-                                        <ul className="space-y-3">
+                                        <ul className="space-y-2 text-xs text-[#37352F]">
                                             <li className="flex items-start gap-2">
-                                                <span className="text-blue-300 mt-1">•</span>
+                                                <span>•</span>
                                                 <span>"Medill's required journalism residency in Washington, D.C."</span>
                                             </li>
                                             <li className="flex items-start gap-2">
-                                                <span className="text-blue-300 mt-1">•</span>
+                                                <span>•</span>
                                                 <span>"Professor Chen's research on CRISPR applications in agricultural crops"</span>
                                             </li>
                                             <li className="flex items-start gap-2">
-                                                <span className="text-blue-300 mt-1">•</span>
+                                                <span>•</span>
                                                 <span>"The Undergraduate Research Grant program that funded 87% of applicants"</span>
                                             </li>
                                         </ul>
-                                        <p className="mt-6 pt-6 border-t border-blue-500 font-semibold text-sm">
+                                        <p className="mt-4 pt-4 border-t border-[#E9E9E7] text-xs font-medium text-[#37352F]">
                                             The difference: Specificity. Names, numbers, program titles, course codes.
                                         </p>
                                     </div>
                                 </div>
                             </section>
 
-                            {/* Secondary Research */}
-                            <section className="mb-20">
-                                <div className="bg-slate-900 text-white p-10 rounded-2xl">
-                                    <h2 className="font-serif text-3xl font-bold mb-4">
-                                        Secondary Research 
-                                        <span className="font-light italic text-slate-400 ml-3">(If Schedule Permits)</span>
-                                    </h2>
-                                    <p className="text-slate-300 text-lg mb-6">Don't delay your core research waiting for these, but if they are available, use them.</p>
-                                    <div className="bg-slate-800 p-6 rounded-xl border border-slate-700">
-                                        <h3 className="font-semibold text-lg mb-3">Virtual Events & Rep Visits:</h3>
-                                        <p className="text-slate-300 mb-4">If a rep visits your high school or there is a virtual info session, attend it.</p>
-                                        <div className="border-t border-slate-700 pt-4">
-                                            <p className="text-xs font-bold text-blue-400 uppercase mb-2 tracking-wider">The Strategy</p>
-                                            <p className="text-slate-300 italic text-sm">Do your core research (Sources 1-4) first. Then, use these sessions to ask specific questions about what you found (e.g., "I saw Professor Chen is researching CRISPR...").</p>
+                            <section className="mb-16">
+                                <div className="bg-[#37352F] text-white p-8 rounded">
+                                    <h2 className="text-xl font-semibold mb-1">Secondary Research</h2>
+                                    <p className="text-sm text-[#9B9A97] mb-5">(If Schedule Permits)</p>
+                                    <p className="text-sm mb-5 text-[#E9E9E7]">Don't delay your core research waiting for these, but if they are available, use them.</p>
+                                    <div className="bg-[#FAFAFA] text-[#37352F] p-5 rounded">
+                                        <h3 className="text-sm font-medium mb-2">Virtual Events & Rep Visits:</h3>
+                                        <p className="text-xs mb-4">If a rep visits your high school or there is a virtual info session, attend it.</p>
+                                        <div className="border-t border-[#E9E9E7] pt-3">
+                                            <p className="text-xs font-medium text-[#2383E2] mb-1 uppercase">The Strategy</p>
+                                            <p className="text-xs text-[#787774]">Do your core research (Sources 1-4) first. Then, use these sessions to ask specific questions about what you found (e.g., "I saw Professor Chen is researching CRISPR...").</p>
                                         </div>
                                     </div>
                                 </div>
                             </section>
 
-                            {/* CTA */}
-                            <div className="text-center bg-blue-600 text-white p-12 rounded-2xl shadow-lg">
-                                <h2 className="font-serif text-3xl font-bold mb-4">Ready to Write?</h2>
-                                <p className="text-xl mb-8 text-blue-100">Now that you know how to research, let's explore the common essay strategies.</p>
-                                <a href="strategies.html" className="inline-block bg-white text-blue-600 font-semibold px-8 py-4 rounded-xl hover:bg-blue-50 shadow-lg">
+                            <div className="text-center bg-[#FAFAFA] border border-[#E9E9E7] p-10 rounded">
+                                <h2 className="text-xl font-semibold text-[#37352F] mb-3">Ready to Write?</h2>
+                                <p className="text-sm text-[#787774] mb-6">Now that you know how to research, let's explore the common essay strategies.</p>
+                                <a href="strategies.html" className="inline-block bg-[#2383E2] text-white font-medium text-sm px-5 py-2.5 rounded hover:bg-[#1a6ec9]">
                                     View Essay Strategies →
                                 </a>
                             </div>
