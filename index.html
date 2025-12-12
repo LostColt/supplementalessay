@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research | Supplemental Essay Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="bg-slate-50">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        // Navigation Component
+        const Nav = () => (
+            <nav className="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+                <div className="max-w-7xl mx-auto px-6 py-4">
+                    <div className="flex items-center justify-between">
+                        <div>
+                            <h1 className="font-serif text-2xl font-bold text-slate-900">Supplemental Essay Guide</h1>
+                            <p className="text-sm text-slate-600">Gulliver Prep</p>
+                        </div>
+                        <div className="flex gap-6">
+                            <a href="index.html" className="font-semibold text-blue-600">Research</a>
+                            <a href="strategies.html" className="text-slate-600 hover:text-slate-900">Strategies</a>
+                            <a href="workshop.html" className="text-slate-600 hover:text-slate-900">Workshop</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        );
+
+        // Research Source Carousel
+        const ResearchCarousel = () => {
+            const [active, setActive] = useState(0);
+            
+            const sources = [
+                {
+                    title: "Department Website",
+                    subtitle: "The \"Meat\"",
+                    icon: "🏢",
+                    headline: "Start Here.",
+                    subtext: "University homepages are for parents; Department pages are for students.",
+                    actions: [
+                        "Go directly to the department page for your major.",
+                        "Scan course descriptions (look for upper-level electives; Intro 101 classes are the same at every college)."
+                    ],
+                    keyStep: "Identify 2-3 professors. Read the 1-sentence summaries of their research."
+                },
+                {
+                    title: "Social Media",
+                    subtitle: "#StudentLife",
+                    icon: "#️⃣",
+                    headline: "Get the Vibe.",
+                    subtext: "Find the authentic, unfiltered culture.",
+                    actions: [
+                        "Search hashtags like #UniversityNameStudent.",
+                        "Check TikTok/Instagram for \"Day in the Life\" content."
+                    ],
+                    keyStep: "Look at posts from the last 30 days-what is happening right now?"
+                },
+                {
+                    title: "Student Newspapers",
+                    subtitle: "The Unfiltered Voice",
+                    icon: "📰",
+                    headline: "Read the Drama.",
+                    subtext: "Find out what students actually care about.",
+                    actions: [
+                        "Google '[School Name] independent student newspaper' (don't just look on the school website).",
+                        "Read the Op-Eds section first."
+                    ],
+                    keyStep: "Look for recent controversies or new initiatives students are debating."
+                },
+                {
+                    title: "Official School Website",
+                    subtitle: "The Alignment Check",
+                    icon: "🛡️",
+                    headline: "Check Values.",
+                    subtext: "Use this last. Do not use this for specific essay details.",
+                    actions: [
+                        "Read the \"About\" or \"Mission\" section.",
+                        "Identify their Core Values keywords (e.g., 'Service', 'Innovation', 'Tradition'). Do these words fit the essay you are writing?"
+                    ],
+                    keyStep: ""
+                }
+            ];
+
+            const source = sources[active];
+
+            return (
+                <div className="bg-white rounded-2xl shadow-lg p-12 my-12 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-blue-50 rounded-full blur-3xl opacity-50"></div>
+                    
+                    <div className="relative z-10">
+                        <div className="text-center mb-8">
+                            <div className="text-6xl mb-4">{source.icon}</div>
+                            <h3 className="font-serif text-4xl font-bold text-slate-900 mb-2">{source.title}</h3>
+                            <p className="text-xl text-blue-600 italic">{source.subtitle}</p>
+                        </div>
+
+                        <div className="max-w-2xl mx-auto space-y-6">
+                            <div className="bg-slate-50 p-6 rounded-xl">
+                                <h4 className="font-bold text-slate-900 mb-2">Headline: <span className="font-normal">{source.headline}</span></h4>
+                                <p className="text-slate-600 italic">Subtext: {source.subtext}</p>
+                            </div>
+
+                            <div className="space-y-3">
+                                {source.actions.map((action, idx) => (
+                                    <div key={idx} className="flex gap-3">
+                                        <span className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">{idx + 1}</span>
+                                        <p className="text-slate-700 pt-1">{action}</p>
+                                    </div>
+                                ))}
+                            </div>
+
+                            {source.keyStep && (
+                                <div className="bg-blue-600 text-white p-6 rounded-xl">
+                                    <p className="text-xs font-bold uppercase tracking-wider mb-2 opacity-80">Key Step</p>
+                                    <p className="font-medium">{source.keyStep}</p>
+                                </div>
+                            )}
+                        </div>
+
+                        <div className="flex justify-center items-center gap-8 mt-12">
+                            <button 
+                                onClick={() => setActive(prev => prev === 0 ? sources.length - 1 : prev - 1)}
+                                className="p-3 bg-slate-100 hover:bg-slate-200 rounded-full transition"
+                            >
+                                ←
+                            </button>
+                            
+                            <div className="flex gap-2">
+                                {sources.map((_, i) => (
+                                    <button 
+                                        key={i}
+                                        onClick={() => setActive(i)}
+                                        className={`h-2 rounded-full transition-all ${i === active ? 'w-8 bg-blue-600' : 'w-2 bg-slate-300'}`}
+                                    />
+                                ))}
+                            </div>
+
+                            <button 
+                                onClick={() => setActive(prev => prev === sources.length - 1 ? 0 : prev + 1)}
+                                className="p-3 bg-slate-100 hover:bg-slate-200 rounded-full transition"
+                            >
+                                →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        // Main App
+        const App = () => (
+            <div>
+                <Nav />
+                
+                <main className="max-w-5xl mx-auto px-6 py-16">
+                    
+                    {/* Hero */}
+                    <div className="mb-20">
+                        <h1 className="font-serif text-6xl font-bold text-slate-900 mb-6 leading-tight">
+                            Before You Write,<br/>
+                            <span className="text-blue-600">You Research.</span>
+                        </h1>
+                        <div className="prose prose-lg text-slate-600">
+                            <p className="text-xl">Before you can write a compelling "Why This School" essay, you need to know specific details about the school.</p>
+                            <p className="text-xl">This guide shows you exactly how to research effectively in 20-30 minutes per school.</p>
+                            <div className="bg-amber-50 border-l-4 border-amber-500 p-6 my-6 rounded-r-lg">
+                                <p className="font-bold text-amber-900 mb-2">When to use this guide:</p>
+                                <p className="text-amber-800 m-0">Only for "Why This School" or "Why This Major" essays. Other essay types don't require school research.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Your Goal */}
+                    <section className="mb-20">
+                        <h2 className="font-serif text-4xl font-bold text-slate-900 mb-6">Your Goal</h2>
+                        <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+                            <p className="text-xl text-slate-700 mb-4 leading-relaxed">
+                                You're not trying to become an expert on the entire university. You're collecting 4-5 specific details (programs, professors, courses) to show you've done your homework and understand what makes this school unique.
+                            </p>
+                            <p className="text-lg text-slate-600 leading-relaxed">
+                                Don't just Google "Why is Northwestern good?" - you need specific programs, professors, courses, and opportunities that connect to your interests.
+                            </p>
+                        </div>
+                    </section>
+
+                    {/* 4 Sources */}
+                    <section className="mb-20">
+                        <h2 className="font-serif text-4xl font-bold text-slate-900 mb-4">
+                            The 4 Sources of Truth
+                        </h2>
+                        <p className="text-xl text-slate-600 mb-8 italic">20-30 minutes per school</p>
+                        <ResearchCarousel />
+                    </section>
+
+                    {/* Capture Template */}
+                    <section className="mb-20">
+                        <h2 className="font-serif text-4xl font-bold text-slate-900 mb-6">Capture Your Research</h2>
+                        <div className="bg-slate-100 border-2 border-slate-300 rounded-2xl p-10">
+                            <div className="flex items-center gap-4 mb-6">
+                                <div className="text-4xl">📋</div>
+                                <div>
+                                    <h3 className="font-serif text-2xl font-bold text-slate-900">The 20-Minute Research Timer</h3>
+                                    <p className="text-slate-600">Copy this list into a blank Google Doc. Fill it out for every school.</p>
+                                </div>
+                            </div>
+                            
+                            <div className="bg-white rounded-xl p-8 space-y-3 font-mono text-sm shadow-inner">
+                                <div>• School Name: ___________</div>
+                                <div>• Specific Programs/Majors: ___________</div>
+                                <div>• Faculty Members: (Name + 1 sentence on their research)</div>
+                                <div>• Specific Courses: (Names and numbers)</div>
+                                <div>• Labs or Centers: ___________</div>
+                                <div>• Unique Opportunities: (Study abroad, specific grants)</div>
+                                <div>• Campus Culture Notes: ___________</div>
+                                <div>• Essay Angle: (How does this connect to me?)</div>
+                            </div>
+
+                            <div className="mt-6 bg-blue-50 border-l-4 border-blue-600 p-6 rounded-r-lg">
+                                <p className="font-bold text-blue-900 mb-2">Pro tip:</p>
+                                <p className="text-blue-800">Set a timer for 20 minutes per school. You're not writing a research paper - you're collecting 4-5 specific details.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Comparison */}
+                    <section className="mb-20">
+                        <h2 className="font-serif text-4xl font-bold text-slate-900 mb-8">What Good Research Looks Like</h2>
+                        <div className="grid md:grid-cols-2 gap-0 rounded-2xl overflow-hidden shadow-lg">
+                            <div className="bg-white p-10 border-r border-slate-200">
+                                <div className="flex items-center gap-3 mb-6 text-red-600">
+                                    <span className="text-2xl">❌</span>
+                                    <h3 className="font-bold text-xl">Weak (Too General)</h3>
+                                </div>
+                                <ul className="space-y-3 text-slate-600">
+                                    <li className="flex items-start gap-2">
+                                        <span className="text-red-400">•</span>
+                                        <span>"Northwestern has a strong journalism program"</span>
+                                    </li>
+                                    <li className="flex items-start gap-2">
+                                        <span className="text-red-400">•</span>
+                                        <span>"The campus is beautiful"</span>
+                                    </li>
+                                    <li className="flex items-start gap-2">
+                                        <span className="text-red-400">•</span>
+                                        <span>"They have a good alumni network"</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div className="bg-gradient-to-br from-blue-600 to-blue-700 p-10 text-white">
+                                <div className="flex items-center gap-3 mb-6">
+                                    <span className="text-2xl">✅</span>
+                                    <h3 className="font-bold text-xl">Strong (Specific)</h3>
+                                </div>
+                                <ul className="space-y-3">
+                                    <li className="flex items-start gap-2">
+                                        <span className="text-blue-300">•</span>
+                                        <span>"Medill's required journalism residency in Washington, D.C."</span>
+                                    </li>
+                                    <li className="flex items-start gap-2">
+                                        <span className="text-blue-300">•</span>
+                                        <span>"Professor Chen's research on CRISPR applications in agricultural crops"</span>
+                                    </li>
+                                    <li className="flex items-start gap-2">
+                                        <span className="text-blue-300">•</span>
+                                        <span>"The Undergraduate Research Grant program that funded 87% of applicants"</span>
+                                    </li>
+                                </ul>
+                                <p className="mt-6 pt-6 border-t border-blue-500 font-bold text-sm">
+                                    The difference: Specificity. Names, numbers, program titles, course codes.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Secondary Research */}
+                    <section className="mb-20">
+                        <div className="bg-slate-900 text-white p-10 rounded-2xl">
+                            <h2 className="font-serif text-3xl font-bold mb-4">Secondary Research <span className="font-normal italic text-slate-400">(If Schedule Permits)</span></h2>
+                            <p className="text-slate-300 text-lg mb-6">Don't delay your core research waiting for these, but if they are available, use them.</p>
+                            <div className="bg-slate-800 p-6 rounded-xl">
+                                <h3 className="font-bold text-xl mb-3">Virtual Events & Rep Visits:</h3>
+                                <p className="text-slate-300 mb-4">If a rep visits your high school or there is a virtual info session, attend it.</p>
+                                <div className="border-t border-slate-700 pt-4">
+                                    <p className="text-xs font-bold text-blue-400 uppercase mb-2">The Strategy</p>
+                                    <p className="text-slate-300 italic">Do your core research (Sources 1-4) first. Then, use these sessions to ask specific questions about what you found (e.g., "I saw Professor Chen is researching CRISPR...").</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* CTA */}
+                    <div className="text-center bg-blue-600 text-white p-12 rounded-2xl">
+                        <h2 className="font-serif text-3xl font-bold mb-4">Ready to Write?</h2>
+                        <p className="text-xl mb-8 text-blue-100">Now that you know how to research, let's explore the common essay strategies.</p>
+                        <a href="strategies.html" className="inline-block bg-white text-blue-600 font-bold px-8 py-4 rounded-lg hover:bg-blue-50 transition">
+                            View Essay Strategies →
+                        </a>
+                    </div>
+
+                </main>
+
+                <footer className="bg-white border-t border-slate-200 mt-20 py-12">
+                    <div className="max-w-5xl mx-auto px-6 text-center text-slate-600">
+                        <p className="font-bold text-slate-900 mb-2">David Tran</p>
+                        <p className="text-sm">College Essay Writing Coach • Gulliver Prep</p>
+                        <p className="text-sm mt-4">dtran@gulliverprep.org</p>
+                    </div>
+                </footer>
+            </div>
+        );
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
+</body>
+</html>
